@@ -1,0 +1,6 @@
+framework module Pods_iPaint {
+  umbrella header "Pods-iPaint-umbrella.h"
+
+  export *
+  module * { export * }
+}
