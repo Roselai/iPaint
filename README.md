@@ -1,4 +1,4 @@
-# iPaint ![alt text](https://github.com/Roselai/iPaint/blob/Roselai-readmeImages/Icon-App-60x60%401x.png)
+# iPaint ![alt text](https://github.com/Roselai/iPaint/blob/master/iPaintIcon_60px.png)
 
 iPaint is a simple paint application that allows users to select a color and paint with it on the canvas (screen). The user can also save or share the image.
 
