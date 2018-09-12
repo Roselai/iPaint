@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +23,16 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" minimumValueImage="minBrushSize" maximumValueImage="maxBrushSize" translatesAutoresizingMaskIntoConstraints="NO" id="Zrn-mx-MDB">
+                                <rect key="frame" x="29" y="579" width="287" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="lineWidthSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="lOd-hQ-t0B"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -34,28 +45,170 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2o1-pB-Am9"/>
-                        <barButtonItem title="Pick a Color" id="cYK-Sj-Q2e">
+                        <barButtonItem title="Pick a Color" image="ColorPickerButton" id="cYK-Sj-Q2e">
                             <connections>
                                 <action selector="colorPickerPressed:" destination="BYZ-38-t0r" id="tJ1-23-XJA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Clear" id="arP-8E-kJ6">
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="tZS-qx-7pT"/>
+                        <barButtonItem title="BGColor" image="BackgroundColorButton" id="6Nm-jL-daU">
+                            <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="setAsBGColorPressed:" destination="BYZ-38-t0r" id="2CA-R6-8p2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="1HN-jO-SXC"/>
+                        <barButtonItem title="Clear" image="ClearButtonIcon" id="arP-8E-kJ6">
+                            <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="clearCanvas:" destination="BYZ-38-t0r" id="2HJ-nz-wZk"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="4kq-KO-IHV"/>
+                        <barButtonItem title="Brush Size" image="BrushSizeIconButton" id="vq8-gb-PLT">
+                            <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="brushSizeButtonPressed:" destination="BYZ-38-t0r" id="OQP-7f-QiA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="RgG-3a-pCm"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="tnL-DX-Inh"/>
+                    <navigationItem key="navigationItem" id="tnL-DX-Inh">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Share" image="shareButtonIcon_1x" id="qrr-SW-eE8">
+                                <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="shareImageWithSender:" destination="BYZ-38-t0r" id="MyC-49-6H5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photoAlbumIcon" id="lbL-oV-eGZ">
+                                <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="savedImagesViewPressed:" destination="BYZ-38-t0r" id="Jci-y4-YYT"/>
+                                    <segue destination="4DE-fG-5Se" kind="show" identifier="showSavedImages" id="mqV-Ua-0kS"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="saveImageIcon_1x" id="idO-uq-wnW">
+                            <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="BYZ-38-t0r" id="OdQ-FE-fUf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="brushSizeButton" destination="vq8-gb-PLT" id="VbS-Pl-guO"/>
                         <outlet property="canvasView" destination="uw4-FA-0Bh" id="HPK-pV-fun"/>
+                        <outlet property="clearCanvasButton" destination="arP-8E-kJ6" id="APS-dU-H0S"/>
                         <outlet property="colorPickerButton" destination="cYK-Sj-Q2e" id="feO-z3-TzF"/>
+                        <outlet property="lineWidthSlider" destination="Zrn-mx-MDB" id="vBd-Tc-0bd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015.2" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2137" y="134"/>
+        </scene>
+        <!--Saved Images View Controller-->
+        <scene sceneID="ueS-uV-p5P">
+            <objects>
+                <viewController id="4DE-fG-5Se" customClass="SavedImagesViewController" customModule="iPaint" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yJW-Sc-1OV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ASh-kj-bOs">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="7" id="XVN-5K-5QG">
+                                    <size key="itemSize" width="115" height="115"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="7" minY="7" maxX="7" maxY="7"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="ZmJ-W7-xEc" customClass="ImageCollectionViewCell" customModule="iPaint" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="7" width="115" height="115"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZTe-Sb-e45">
+                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="ZTe-Sb-e45" secondAttribute="bottom" id="S7E-On-a2D"/>
+                                            <constraint firstItem="ZTe-Sb-e45" firstAttribute="leading" secondItem="ZmJ-W7-xEc" secondAttribute="leading" id="fM8-46-4OC"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZTe-Sb-e45" secondAttribute="trailing" id="kBN-jp-fz6"/>
+                                            <constraint firstItem="ZTe-Sb-e45" firstAttribute="top" secondItem="ZmJ-W7-xEc" secondAttribute="top" id="mLo-bH-xia"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="ZTe-Sb-e45" id="VPY-M1-MMZ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Saved Images!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rt-58-Rpo">
+                                <rect key="frame" x="54" y="300" width="267" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0Rt-58-Rpo" firstAttribute="top" secondItem="dmN-RE-djM" secondAttribute="top" constant="236" id="3UY-OK-1lS"/>
+                            <constraint firstItem="dmN-RE-djM" firstAttribute="bottom" secondItem="0Rt-58-Rpo" secondAttribute="bottom" constant="256" id="FQo-CJ-xmK"/>
+                            <constraint firstItem="dmN-RE-djM" firstAttribute="trailing" secondItem="0Rt-58-Rpo" secondAttribute="trailing" constant="54" id="It5-Ts-0ZT"/>
+                            <constraint firstItem="ASh-kj-bOs" firstAttribute="top" secondItem="dmN-RE-djM" secondAttribute="top" id="PvA-G1-STZ"/>
+                            <constraint firstItem="0Rt-58-Rpo" firstAttribute="leading" secondItem="dmN-RE-djM" secondAttribute="leading" constant="54" id="Ri9-DI-rFz"/>
+                            <constraint firstItem="ASh-kj-bOs" firstAttribute="leading" secondItem="dmN-RE-djM" secondAttribute="leading" id="g9T-yO-CWh"/>
+                            <constraint firstItem="ASh-kj-bOs" firstAttribute="bottom" secondItem="dmN-RE-djM" secondAttribute="bottom" id="pFj-jW-qTx"/>
+                            <constraint firstItem="ASh-kj-bOs" firstAttribute="trailing" secondItem="dmN-RE-djM" secondAttribute="trailing" id="utZ-fA-KuJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dmN-RE-djM"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ASh-kj-bOs" id="Ahm-4d-MiE"/>
+                        <outlet property="noImagesLabel" destination="0Rt-58-Rpo" id="gf3-lp-qkQ"/>
+                        <segue destination="Zsw-xO-c4l" kind="show" identifier="showDoodle" id="36M-9h-1Rb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="28p-F4-hII" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2965.5999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--Doodle Info View Controller-->
+        <scene sceneID="Qm1-qz-3nH">
+            <objects>
+                <viewController id="Zsw-xO-c4l" customClass="DoodleInfoViewController" customModule="iPaint" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Udu-x8-tta">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-kj-pUg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0T7-kj-pUg" firstAttribute="bottom" secondItem="Et5-si-fmZ" secondAttribute="bottom" id="Hzc-Yi-9K2"/>
+                            <constraint firstItem="0T7-kj-pUg" firstAttribute="leading" secondItem="Et5-si-fmZ" secondAttribute="leading" id="YLr-QU-AUB"/>
+                            <constraint firstItem="0T7-kj-pUg" firstAttribute="top" secondItem="Et5-si-fmZ" secondAttribute="top" id="bRs-0m-GSS"/>
+                            <constraint firstItem="0T7-kj-pUg" firstAttribute="trailing" secondItem="Et5-si-fmZ" secondAttribute="trailing" id="pFd-Yn-2h8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Et5-si-fmZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="0T7-kj-pUg" id="bsG-Wc-Bdp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tct-a7-bte" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3824.8000000000002" y="133.5832083958021"/>
         </scene>
         <!--Canvas-->
         <scene sceneID="qDs-eJ-zJD">
@@ -77,4 +230,15 @@
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundColorButton" width="32" height="32"/>
+        <image name="BrushSizeIconButton" width="32" height="32"/>
+        <image name="ClearButtonIcon" width="32" height="32"/>
+        <image name="ColorPickerButton" width="32" height="32"/>
+        <image name="maxBrushSize" width="50" height="50"/>
+        <image name="minBrushSize" width="25" height="25"/>
+        <image name="photoAlbumIcon" width="32" height="32"/>
+        <image name="saveImageIcon_1x" width="32" height="32"/>
+        <image name="shareButtonIcon_1x" width="32" height="32"/>
+    </resources>
 </document>
