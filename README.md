@@ -18,7 +18,7 @@ use_frameworks!
 pod 'ChromaColorPicker'
 ```
 # Building/Running
-1. Open project folder and clock on iPaint.xcworkspace to open project.
+1. Open project folder and click on iPaint.xcworkspace to open project.
 2. Build and run the app on target device.
 
 # Screenshots
