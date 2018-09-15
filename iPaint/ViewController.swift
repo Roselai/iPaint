@@ -34,7 +34,7 @@ class ViewController: UIViewController, ChromaColorPickerDelegate, ChromaShadeSl
     // MARK: VARIABLES
     var colorPicker = ChromaColorPicker()
     var currentColor: UIColor = .black
- 
+    
     
     
     // MARK: VIEW FUNCTIONS
@@ -113,13 +113,7 @@ class ViewController: UIViewController, ChromaColorPickerDelegate, ChromaShadeSl
         // image to share
         let image = generateImage()
         
-        // set up activity view controller
-        let imageToShare = [image]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        
-        // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        shareAnImage(image: image)
         
     }
     
@@ -128,10 +122,10 @@ class ViewController: UIViewController, ChromaColorPickerDelegate, ChromaShadeSl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSavedImages" {
             
-                let destinationVC = segue.destination as! SavedImagesViewController
-                destinationVC.persistentContainer = persistentContainer
+            let destinationVC = segue.destination as! SavedImagesViewController
+            destinationVC.persistentContainer = persistentContainer
             destinationVC.managedContext = managedContext
-                
+            
         }
     }
     
@@ -188,7 +182,7 @@ class ViewController: UIViewController, ChromaColorPickerDelegate, ChromaShadeSl
         }
         
         
-    
+        
         /*UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)*/
     }
     
@@ -206,18 +200,18 @@ class ViewController: UIViewController, ChromaColorPickerDelegate, ChromaShadeSl
     }
     
     /*
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        
-        if let error = error {
-            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: "Saved!", message: "Your drawing has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        }
-    }*/
+     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+     
+     if let error = error {
+     let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+     ac.addAction(UIAlertAction(title: "OK", style: .default))
+     present(ac, animated: true)
+     } else {
+     let ac = UIAlertController(title: "Saved!", message: "Your drawing has been saved to your photos.", preferredStyle: .alert)
+     ac.addAction(UIAlertAction(title: "OK", style: .default))
+     present(ac, animated: true)
+     }
+     }*/
     
     
     
@@ -273,6 +267,23 @@ extension UIImage {
     }
     var png: NSData? {
         return UIImagePNGRepresentation(self)! as NSData
+    }
+}
+
+extension UIViewController {
+    
+    func shareAnImage(image: UIImage){
+        let imageToShare = [image]
+        presentActivityViewController(imageToShare: imageToShare)
+    }
+    
+    func presentActivityViewController(imageToShare: [UIImage]){
+    let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+    activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+    
+    // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+        
     }
 }
 

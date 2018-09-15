@@ -75,7 +75,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="tnL-DX-Inh">
                         <leftBarButtonItems>
-                            <barButtonItem title="Share" image="shareButtonIcon_1x" id="qrr-SW-eE8">
+                            <barButtonItem title="Share" image="shareButtonIcon" id="qrr-SW-eE8">
                                 <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="shareImageWithSender:" destination="BYZ-38-t0r" id="MyC-49-6H5"/>
@@ -89,7 +89,7 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="saveImageIcon_1x" id="idO-uq-wnW">
+                        <barButtonItem key="rightBarButtonItem" image="saveImageIcon" id="idO-uq-wnW">
                             <color key="tintColor" red="0.80000000000000004" green="0.094117647060000004" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="BYZ-38-t0r" id="OdQ-FE-fUf"/>
@@ -202,6 +202,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Et5-si-fmZ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zoN-qj-PbT">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="shareButtonIcon" id="SD8-mf-iJj">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="Zsw-xO-c4l" id="Uwh-xT-v14"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="0T7-kj-pUg" id="bsG-Wc-Bdp"/>
                     </connections>
@@ -238,7 +245,7 @@
         <image name="maxBrushSize" width="50" height="50"/>
         <image name="minBrushSize" width="25" height="25"/>
         <image name="photoAlbumIcon" width="32" height="32"/>
-        <image name="saveImageIcon_1x" width="32" height="32"/>
-        <image name="shareButtonIcon_1x" width="32" height="32"/>
+        <image name="saveImageIcon" width="32" height="32"/>
+        <image name="shareButtonIcon" width="32" height="32"/>
     </resources>
 </document>

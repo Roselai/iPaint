@@ -14,13 +14,25 @@ class DoodleInfoViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var doodle: Doodle?
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let imageData = doodle?.image
-        let image = UIImage(data: imageData! as Data)
+        image = UIImage(data: imageData! as Data)
         imageView.image = image
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.MyTheme.redColor
+        
     }
+    
+    @IBAction func shareButtonPressed(_ sender: UIBarButtonItem) {
+        if let image = image {
+            shareAnImage(image: image)
+        }
+    }
+    
+    
     
 }
