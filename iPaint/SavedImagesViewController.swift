@@ -60,20 +60,18 @@ class SavedImagesViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.allowsMultipleSelection = false
         
         
         let fetchRequest: NSFetchRequest<Doodle> = Doodle.fetchRequest()
         fetchRequest.fetchBatchSize = 18
-        
+    
         let dateSort = NSSortDescriptor(key: #keyPath(Doodle.creationDate), ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         fetchedResultsController.delegate = self
-        
         
         doFetch()
         
@@ -93,15 +91,25 @@ class SavedImagesViewController: UIViewController {
         showImageButton?.isEnabled = false
         deleteButton?.isEnabled = false
         
-        
         enableLableCheck()
-        
         
         collectionView.reloadData()
     }
     
     @objc func deleteButtonClicked(sender: UIBarButtonItem) {
-        deleteSelectedDoodles()
+        
+        let alertController = UIAlertController(title: "Warning!", message: "Are you sure you want to delete this masterpiece?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "No, changed my mind", style: .cancel) { (action) in}
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Yes Please", style: .default) { (action) in
+            self.deleteSelectedDoodles()
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true) {}
+        
     }
     
     @objc func showImageButtonClicked(sender: UIBarButtonItem) {

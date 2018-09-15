@@ -70,8 +70,9 @@ class CanvasView: UIView {
     
     // MARK: CLEAR CANVAS FUNCTION
     func clearCanvas() {
-        
+        if !(path.isEmpty){
         path.removeAllPoints()
+        }
         if backgroundColor != .white {
             backgroundColor = .white
         }
